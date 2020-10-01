@@ -24,11 +24,11 @@ jobs:
               uses: actions/checkout@v2
               with:
                   fetch-depth: 0
-            - name: Setup .NET 5
-              run: |
-                iwr https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.ps1 -OutFile ./dotnet-install.ps1
-                ./dotnet-install.ps1 -c Current -v 5.0.100-rc.1
-                ri ./dotnet-install.ps1
+
+            - name: Setup .NET Core SDK
+              uses: actions/setup-dotnet@v1.7.2
+              with:
+                 dotnet-version: '5.0.100'
 
             - name: Cache nuget packages
               id: cache-nuget
@@ -43,7 +43,7 @@ jobs:
               run: dotnet build $env:Project_Path -p:Configuration=$env:Configuration -p:Platform=$env:Platform /m
 
             - name: Publish the application
-              run: dotnet publish $env:Project_Path /p:OutDir="$PWD/publish" /p:Configuration=$env:Configuration /p:Platform=$env:Platform /m
+              run: dotnet publish $env:Project_Path -p:OutDir="$PWD/publish" -p:Configuration=$env:Configuration -p:Platform=$env:Platform -m
 
             - name: Copy dotnet-install.ps1 to publish dir
               run: Copy-Item -Path ./dotnet-install.ps1 -Destination ./publish/dotnet-install.ps1
