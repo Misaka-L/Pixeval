@@ -25,9 +25,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup MSBuild.exe
-              uses: microsoft/setup-msbuild@v1.0.0
-
             - name: Cache nuget packages
               id: cache-nuget
               uses: actions/cache@v2
@@ -37,14 +34,11 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-nuget-
 
-            - name: Restore the application
-              run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /m
-
             - name: Build the application
-              run: msbuild $env:Project_Path /t:build /p:Configuration=$env:Configuration /p:Platform=$env:Platform /m
+              run: dotnet build $env:Project_Path -p:Configuration=$env:Configuration -p:Platform=$env:Platform /m
 
             - name: Publish the application
-              run: msbuild $env:Project_Path /t:publish /p:OutDir="$PWD/publish" /p:Configuration=$env:Configuration /p:Platform=$env:Platform /m
+              run: dotnet publish $env:Project_Path /p:OutDir="$PWD/publish" /p:Configuration=$env:Configuration /p:Platform=$env:Platform /m
 
             - name: Copy dotnet-install.ps1 to publish dir
               run: Copy-Item -Path ./dotnet-install.ps1 -Destination ./publish/dotnet-install.ps1
