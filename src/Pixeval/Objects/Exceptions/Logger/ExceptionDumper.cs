@@ -83,7 +83,6 @@ namespace Pixeval.Objects.Exceptions.Logger
             sb.AppendLine($"        OS Version String: {Environment.OSVersion.VersionString}");
             sb.AppendLine($"        OS Version {Environment.OSVersion.Version}");
             sb.AppendLine($"        Service Pack Version: {(Environment.OSVersion.ServicePack.IsNullOrEmpty() ? "Not Installed" : "Environment.OSVersion.ServicePack")}");
-            sb.AppendLine($"        Visual C++ Redistributable Version: {GetCppRedistributableVersion()}");
             sb.AppendLine(@"    End Operating System");
             sb.AppendLine();
             sb.AppendLine(@"    Begin Exception Log");
@@ -105,12 +104,6 @@ namespace Pixeval.Objects.Exceptions.Logger
         {
             var indentation = new string(' ', indent * 4);
             return data.Split('\n').Select(s => indentation + s).Join('\n');
-        }
-
-        private static string GetCppRedistributableVersion()
-        {
-            using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64");
-            return key == null ? "Not Installed" : key.GetValue("Bld").ToString();
         }
 
         private static ulong GetTotalInstalledMemory()

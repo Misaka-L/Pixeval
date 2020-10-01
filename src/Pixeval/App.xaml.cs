@@ -65,7 +65,6 @@ namespace Pixeval
             // These initializations ensure Pixeval to run properly, they MUST be initialized before everything start
             WriteToCurrentUserPathVariable();
             InitializeFolders();
-            CheckCppRedistributable();
             CheckMultipleProcess();
             await InstallFakeCaCertificate();
 
@@ -158,6 +157,7 @@ namespace Pixeval
 
         private static void CreatePluggableProtocolRegistry()
         {
+#pragma warning disable CA1416
             var regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Classes\\pixeval");
             if (regKey == null)
             {
@@ -169,8 +169,9 @@ namespace Pixeval
                 if (shellKey == null) throw new InvalidOperationException(nameof(shellKey));
                 shellKey.SetValue("", $"{Path.Combine(AppContext.InterchangeFolder, "Pixeval.Interchange.exe")} %1");
             }
-
             regKey?.Dispose();
+#pragma warning restore CA1416
+
         }
 
         private static void CheckMultipleProcess()
@@ -182,16 +183,6 @@ namespace Pixeval
             }
         }
 
-        private static void CheckCppRedistributable()
-        {
-            if (!CppRedistributableInstalled())
-            {
-                MessageBox.Show(AkaI18N.CppRedistributableRequired, AkaI18N.CppRedistributableRequiredTitle, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                Clipboard.SetDataObject("https://support.microsoft.com/zh-cn/help/2977003/the-latest-supported-visual-c-downloads");
-                Environment.Exit(-1);
-            }
-        }
-
         private static async Task CheckUpdate()
         {
             if (await AppContext.UpdateAvailable() && MessageBox.Show(AkaI18N.PixevalUpdateAvailable, AkaI18N.PixevalUpdateAvailableTitle, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
@@ -199,24 +190,6 @@ namespace Pixeval
                 Process.Start(@"updater\Pixeval.Updater.exe");
                 Environment.Exit(0);
             }
-        }
-
-        /// <summary>
-        ///     Check if the required Visual C++ Redistributable is installed on the computer
-        /// </summary>
-        /// <returns>Cpp redistributable is installed</returns>
-        private static bool CppRedistributableInstalled()
-        {
-            using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64");
-            if (key == null) return false;
-
-            var success = int.TryParse(key.GetValue("Bld").ToString(), out var version);
-            // visual C++ redistributable Bld table: 
-            // version   v2015    v2017    v2019
-            // ----------------------------------
-            //   Bid     23026    26020    27820
-            const int vc2015Bld = 23026;
-            return success && version >= vc2015Bld;
         }
 
         private static void CefSharpInitialize()

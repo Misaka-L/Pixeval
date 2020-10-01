@@ -11,9 +11,11 @@
 		<ApplicationIcon>Resources\pxlogo.ico</ApplicationIcon>
 		<LangVersion>preview</LangVersion>
 		<Platforms>x64</Platforms>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 	</PropertyGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="windows" />
+	</ItemGroup>
 
 	<PropertyGroup>
 		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>

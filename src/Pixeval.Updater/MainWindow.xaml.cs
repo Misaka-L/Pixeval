@@ -42,7 +42,7 @@ namespace Pixeval.Updater
     {
         private static readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        private static readonly string _currentDir = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase!).LocalPath);
+        private static readonly string _currentDir = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location!).LocalPath);
 
         private static readonly DirectoryInfo _pixevalDirectory = Directory.GetParent(_currentDir);
 

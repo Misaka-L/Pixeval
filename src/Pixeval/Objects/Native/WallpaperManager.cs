@@ -65,10 +65,12 @@ namespace Pixeval.Objects.Native
         public async ValueTask<bool> Execute()
         {
             await CreateBmpFile();
+#pragma warning disable CA1416
             using var regKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
             if (regKey == null) return false;
             regKey.SetValue("WallpaperStyle", (CheckOperatingSystemVersion() && IsImageSupportSpan() ? /* span */ 22 : /* normal */ 10).ToString());
             regKey.SetValue("TitleWallpaper", 0.ToString());
+#pragma warning restore CA1416
             SystemParametersInfo(SetDeskWallpaper, 0, StoreLocation, UpdateIniFile | SendWinIniChange);
             return true;
         }
