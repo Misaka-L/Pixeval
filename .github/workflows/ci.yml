@@ -24,11 +24,12 @@ jobs:
               uses: actions/checkout@v2
               with:
                   fetch-depth: 0
-            - name: Setup .NET Core SDK
-              uses: actions/setup-dotnet@v1.7.2
-              with:
-                dotnet-version: '5.0.100-rc.1'
-            
+            - name: Setup .NET 5
+              run: |
+                iwr https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.ps1 -OutFile ./dotnet-install.ps1
+                ./dotnet-install.ps1 -c Current -v 5.0.100-rc.1
+                ri ./dotnet-install.ps1
+
             - name: Cache nuget packages
               id: cache-nuget
               uses: actions/cache@v2
