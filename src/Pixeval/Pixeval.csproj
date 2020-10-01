@@ -20,6 +20,7 @@
 	<PropertyGroup>
 		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AnalysisLevel>5.0</AnalysisLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -44,7 +45,6 @@
 		<PackageReference Include="AdaptiveCards" Version="2.1.0" />
 		<PackageReference Include="AdysTech.CredentialManager" Version="2.2.0" />
 		<PackageReference Include="AngleSharp" Version="1.0.0-alpha-827" />
-		<PackageReference Include="CefSharp.Wpf" Version="84.4.10" />
 		<PackageReference Include="Dragablz" Version="0.0.3.203" />
 		<PackageReference Include="EmbedIO" Version="3.4.3" />
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
@@ -52,6 +52,7 @@
 		<PackageReference Include="MahApps.Metro" Version="2.2.0" />
 		<PackageReference Include="MaterialDesignColors" Version="1.2.8-ci1990" />
 		<PackageReference Include="MaterialDesignThemes" Version="3.2.1-ci1990" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="0.9.628-prerelease" />
 		<PackageReference Include="Microsoft.Windows.SDK.NET" Version="10.0.18362.3-preview" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
