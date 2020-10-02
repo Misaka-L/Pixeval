@@ -25,7 +25,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using CefSharp;
 using EmbedIO;
 using Pixeval.Data.Web;
 using Pixeval.Data.Web.Delegation;

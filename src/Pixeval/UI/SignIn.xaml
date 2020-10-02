@@ -139,15 +139,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
                               VerticalContentAlignment="Center"
                               HorizontalScrollBarVisibility="Visible"
                               VerticalScrollBarVisibility="Visible">
-                    <wv2:WebView2 Name="webView"
-                                  Source="https://www.microsoft.com"
-                    />
-                    <!--<wpf:ChromiumWebBrowser x:Name="ChromiumWebBrowser"
-                                            Width="1000"
-                                            Height="700"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Stretch"
-                                            RequestHandler="{x:Static webApi:BypassProxyRequestHandler.Instance}" />-->
                 </ScrollViewer>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

@@ -31,8 +31,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CefSharp;
-using CefSharp.Wpf;
 using Microsoft.Win32;
 using Pixeval.Core;
 using Pixeval.Objects.I18n;

@@ -21,6 +21,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Web.WebView2.Core;
 using Pixeval.Objects.Exceptions.Logger;
 using Pixeval.Objects.I18n;
 using Pixeval.Objects.Primitive;
@@ -32,11 +33,17 @@ namespace Pixeval.UI
     public partial class SignIn
     {
         public static SignIn Instance;
+        private readonly CoreWebView2 _coreWebView2;
 
         public SignIn()
         {
             Instance = this;
             InitializeComponent();
+        }
+
+        public SignIn(CoreWebView2 coreWebView2):this()
+        {
+            _coreWebView2 = coreWebView2;
         }
 
         private async void Login_OnClick(object sender, RoutedEventArgs e)

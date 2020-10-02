@@ -30,11 +30,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AdaptiveCards" Version="2.1.0" />
+		<PackageReference Include="AdaptiveCards" Version="2.2.0" />
 		<PackageReference Include="AdysTech.CredentialManager" Version="2.2.0" />
 		<PackageReference Include="AngleSharp" Version="1.0.0-alpha-827" />
 		<PackageReference Include="Dragablz" Version="0.0.3.203" />
-		<PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="4.1.0" />
 		<PackageReference Include="EmbedIO" Version="3.4.3" />
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
 		<PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.0" />
@@ -68,5 +67,7 @@
 		<Resource Include="Resources\saucenao.png" />
 	</ItemGroup>
 
-	
+	<ItemGroup>
+	  <Content Remove="C:\Users\Summp\.nuget\packages\microsoft.web.webview2\0.9.628-prerelease\build\\..\runtimes\win-x64\native\WebView2Loader.dll" />
+	</ItemGroup>
 </Project>

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Web.WebView2.Core;
+using Pixeval.UI;
 
 namespace Pixeval
 {
@@ -37,6 +36,8 @@ namespace Pixeval
             Host.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSingleton<CoreWebView2>();
+                    services.AddSingleton<SignIn>();
                     services.AddSingleton<App>();
                 })
                 .ConfigureLogging(config =>

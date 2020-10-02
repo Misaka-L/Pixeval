@@ -18,8 +18,6 @@
 
 #endregion
 
-using CefSharp;
-using CefSharp.Handler;
 
 namespace Pixeval.Persisting.WebApi
 {
