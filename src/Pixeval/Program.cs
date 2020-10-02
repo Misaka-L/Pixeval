@@ -5,19 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Pixeval
 {
     class Program
     {
-        private static async Task Main(string[] args)
+        [STAThread]
+        private static async Task Main()
         {
-            await Host.CreateDefaultBuilder(args)
-                .ConfigureServices((context, services) =>
-                {
+            var host = CreateHostBuilder().Build();
+            using (var serviceScope = host.Services.CreateScope())
+            {
+                var services = serviceScope.ServiceProvider;
 
-                })
-                .Build().RunAsync();
+                try
+                {
+                    var app = services.GetRequiredService<App>();
+                    app.Run();
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred.");
+                }
+            }
+            await host.RunAsync();
         }
+
+        private static IHostBuilder CreateHostBuilder() =>
+            Host.CreateDefaultBuilder()
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddSingleton<App>();
+                })
+                .ConfigureLogging(config =>
+                {
+                    
+                });
     }
 }

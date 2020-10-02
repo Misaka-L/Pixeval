@@ -73,7 +73,6 @@ namespace Pixeval
             AppContext.ProxyPort = proxy;
             AppContext.PacPort = pac;
             await WritePac();
-            CefSharpInitialize();
 
             // These initializations handle USER SESSION AND PIXEVAL UPDATE
             await RestoreSettings();
@@ -192,10 +191,10 @@ namespace Pixeval
             }
         }
 
-        private static void CefSharpInitialize()
-        {
-            Cef.Initialize(new CefSettings {CefCommandLineArgs = {{"proxy-pac-url", $"http://127.0.0.1:{AppContext.PacPort}/pixeval_pac.pac"}}}, true, browserProcessHandler: null);
-        }
+        //private static void CefSharpInitialize()
+        //{
+        //    Cef.Initialize(new CefSettings {CefCommandLineArgs = {{"proxy-pac-url", $"http://127.0.0.1:{AppContext.PacPort}/pixeval_pac.pac"}}}, true, browserProcessHandler: null);
+        //}
 
         private static async Task InstallFakeCaCertificate()
         {
