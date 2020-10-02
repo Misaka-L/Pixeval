@@ -7,10 +7,11 @@
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<Description>A Strong, Fast and Flexible Pixiv Client</Description>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<StartupObject>Pixeval.App</StartupObject>
+		<StartupObject></StartupObject>
 		<ApplicationIcon>Resources\pxlogo.ico</ApplicationIcon>
 		<LangVersion>preview</LangVersion>
 		<Platforms>x64</Platforms>
+		<EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 	</PropertyGroup>
 	<ItemGroup>
@@ -26,19 +27,6 @@
 	<ItemGroup>
 		<None Remove="Objects\I18n\Xml\resx_en-us.xml" />
 		<None Remove="Objects\I18n\Xml\resx_zh-cn.xml" />
-		<None Remove="Resources\interchange.zip" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Update="CefSharp">
-			<Private>true</Private>
-		</Reference>
-		<Reference Update="CefSharp.Core">
-			<Private>true</Private>
-		</Reference>
-		<Reference Update="CefSharp.Wpf">
-			<Private>true</Private>
-		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,12 +34,15 @@
 		<PackageReference Include="AdysTech.CredentialManager" Version="2.2.0" />
 		<PackageReference Include="AngleSharp" Version="1.0.0-alpha-827" />
 		<PackageReference Include="Dragablz" Version="0.0.3.203" />
+		<PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="4.1.0" />
 		<PackageReference Include="EmbedIO" Version="3.4.3" />
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
 		<PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.0" />
 		<PackageReference Include="MahApps.Metro" Version="2.2.0" />
 		<PackageReference Include="MaterialDesignColors" Version="1.2.8-ci1990" />
 		<PackageReference Include="MaterialDesignThemes" Version="3.2.1-ci1990" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0-rc.1.20451.14" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0-rc.1.20451.14" />
 		<PackageReference Include="Microsoft.Web.WebView2" Version="0.9.628-prerelease" />
 		<PackageReference Include="Microsoft.Windows.SDK.NET" Version="10.0.18362.3-preview" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -70,7 +61,6 @@
 		<Resource Include="Resources\dqueue.ttf" />
 		<Resource Include="Resources\iconfont.ttf" />
 		<Resource Include="Resources\iconfontex.ttf" />
-		<Resource Include="Resources\interchange.zip" />
 		<Resource Include="Resources\logo-only.svg" />
 		<Resource Include="Resources\pixeval_ca.cer" />
 		<Resource Include="Resources\pixeval_server_cert.pfx" />
