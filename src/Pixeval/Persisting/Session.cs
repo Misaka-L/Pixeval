@@ -174,39 +174,6 @@ namespace Pixeval.Persisting
         }
 
         /// <summary>
-        ///     Refresh the session if required, it is composed of two sections, app-API login
-        ///     and web-API login, each section has its own expiration check, and both two sections
-        ///     are invoked separately, we will only refresh the required section
-        /// </summary>
-        /// <returns></returns>
-        public static async Task RefreshIfRequired()
-        {
-            if (Current == null) await Restore();
-
-            // refresh through app-API
-            static async Task RefreshAppApi()
-            {
-                if (AppApiRefreshRequired(Current))
-                {
-                    // we'd prefer use refresh token
-                    if (Current?.RefreshToken.IsNullOrEmpty() is true)
-                        await Authentication.AppApiAuthenticate(Current?.MailAddress, Current?.Password);
-                    else
-                        await Authentication.AppApiAuthenticate(Current?.RefreshToken);
-                }
-            }
-
-            // refresh through web-API
-            static async Task RefreshWebApi()
-            {
-                if (WebApiRefreshRequired(Current)) await Authentication.WebApiAuthenticate(Current?.MailAddress, Current?.Password);
-            }
-
-            // wait for both two sections to be complete
-            await Task.WhenAll(RefreshAppApi(), RefreshWebApi());
-        }
-
-        /// <summary>
         ///     clear the session and user identity, this action will remove the persisting data
         /// </summary>
         public static void Clear()

@@ -66,8 +66,4 @@
 		<Resource Include="Resources\pxlogo.ico" />
 		<Resource Include="Resources\saucenao.png" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Remove="C:\Users\Summp\.nuget\packages\microsoft.web.webview2\0.9.628-prerelease\build\\..\runtimes\win-x64\native\WebView2Loader.dll" />
-	</ItemGroup>
 </Project>

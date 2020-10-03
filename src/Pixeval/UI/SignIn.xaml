@@ -122,6 +122,8 @@
                               VerticalContentAlignment="Center"
                               HorizontalScrollBarVisibility="Visible"
                               VerticalScrollBarVisibility="Visible">
+                    <wv2:WebView2 Name="WebView2">
+                    </wv2:WebView2>
                 </ScrollViewer>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
